@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { listFailure, listRequired, listSuccess } from "./";
+import { productFake } from "../mocks/product_fake";
 
 describe("Actions", () => {
   it("Should return type required list", () => {
@@ -12,15 +13,6 @@ describe("Actions", () => {
     expect(result).toEqual({ type: "list_failure", payload: error });
   });
   it("Should return success list type", () => {
-    const productFake = {
-      id: faker.string.uuid(),
-      name: faker.commerce.productName(),
-      avatar: faker.image.url(),
-      description: faker.commerce.productDescription(),
-      price: faker.commerce.price(),
-      rating: faker.number.float({min: 1.0, max: 5.0}),
-      category: faker.commerce.department()
-    }
     const result = listSuccess([productFake]);
     expect(result).toEqual({ type: "list_success", payload: [productFake] });
   });
