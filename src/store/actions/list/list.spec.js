@@ -1,6 +1,10 @@
 import { faker } from "@faker-js/faker";
-import { listFailure, listRequired, listSuccess } from "./";
-import { productFake } from "../mocks/product_fake";
+import {
+  listFailure,
+  listRequired,
+  listSuccess,
+} from "./";
+import { productFake } from "../../mocks/product_fake";
 
 describe("Actions", () => {
   it("Should return type required list", () => {
