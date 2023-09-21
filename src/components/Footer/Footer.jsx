@@ -4,7 +4,6 @@ import FooterStyles from './Styles';
 const Footer = () => {
 
   const collaborators = ['Bruno Barqueta', 'Cledson Leite', 'Rafael Magalhães', 'Suzane Ferreira'];
-  console.log(collaborators);
     return ( 
         <>
           <FooterStyles>
@@ -12,12 +11,12 @@ const Footer = () => {
               {collaborators.map((value, index) => {
                 
                 return(
-                  <>
-                    <span>{value}</span>
+                  <React.Fragment key={'frag' + index}>
+                    <span key={'name' + index}>{value}</span>
                     {(collaborators.length !== (index + 1)) &&
-                      <span> - </span>
+                      <span key={'dash' + index}> - </span>
                     }
-                  </>
+                  </React.Fragment>
                 );
               })}
             </footer>
