@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import * as Actions from "../../actions/pagination";
 import { productFake } from "../../mocks/product_fake";
-import { paginationReducer } from ".";
+import paginationReducer from ".";
 
 describe("Reduces", () => {
   const initialState = {

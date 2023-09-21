@@ -3,7 +3,7 @@ import * as Actions from "../../actions/list";
 import axios from "axios";
 
 export const control = async () => {
-  const baseUrl = process.emitWarning.env.BASE_URL;
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const url = `${baseUrl}?pageSize=9&pageNumber=1`;
   const result = await axios.get(url);
   return result.data;
