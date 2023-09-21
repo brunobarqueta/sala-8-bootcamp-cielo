@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 
 const App = () => {
-	const {load, error, list} = useSelector(state => state.search)
+	const {load, error, list} = useSelector(state => state.products)
 	const dispatch = useDispatch()
 	console.log('load: ' + load)
 	console.log('error: ' + error)

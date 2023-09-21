@@ -3,19 +3,38 @@ import { searchFailure, searchRequired, searchSuccess } from ".";
 import { productFake } from "../../mocks/product_fake";
 
 describe("Actions", () => {
+  it("Should return type required without search and without page", () => {
+    const result = searchRequired();
+    expect(result).toEqual({
+      type: "search_required",
+      payload: { search: '', page: 1 },
+    });
+  });
+  it("Should return type required without search with page", () => {
+    const page = faker.number.int();
+    const result = searchRequired('', page);
+    expect(result).toEqual({
+      type: "search_required",
+      payload: { search:'', page },
+    });
+  });
   it("Should return type required search without page", () => {
     const search = faker.lorem.word(3);
     const result = searchRequired(search);
     expect(result).toEqual({
       type: "search_required",
-      payload: { search, page: 1 },
+      payload: { search: `&search=${search}`, page: 1 },
     });
+  });
   });
   it("Should return type required search with page", () => {
     const search = faker.lorem.word(3);
     const page = faker.number.int();
     const result = searchRequired(search, page);
-    expect(result).toEqual({ type: "search_required", payload: {search, page} });
+    expect(result).toEqual({
+      type: "search_required",
+      payload: { search: `&search=${search}`, page },
+    });
   });
   it("Should return failed list type", () => {
     const error = faker.lorem.sentence(5);
@@ -29,4 +48,3 @@ describe("Actions", () => {
       payload: [productFake],
     });
   });
-});

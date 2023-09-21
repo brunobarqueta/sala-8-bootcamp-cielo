@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const control = async (payload) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
-  const url = `${baseUrl}?pageSize=9&pageNumber=${payload.page}&search=${payload.search}`;
+  const url = `${baseUrl}?pageSize=9&pageNumber=${payload.page}${payload.search}`;
   const result = await axios.get(url);
   return result.data;
 };

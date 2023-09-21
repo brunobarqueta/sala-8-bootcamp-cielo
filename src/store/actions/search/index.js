@@ -1,6 +1,7 @@
 import * as Types from '../../types/search'
-export const searchRequired = (search, pageNumber) => {
+export const searchRequired = (searchLetter, pageNumber) => {
   const page = !pageNumber ? 1 : pageNumber;
+  const search = !searchLetter ? '' : `&search=${searchLetter}`
   return {
     type: Types.SEARCH_REQUIRED,
     payload: { search, page },
