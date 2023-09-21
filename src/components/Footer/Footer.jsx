@@ -11,7 +11,7 @@ const Footer = () => {
               {collaborators.map((value, index) => {
                 
                 return(
-                  <React.Fragment key={'frag' + index}>
+                  <React.Fragment className='footer-wrapper' key={'frag' + index}>
                     <span key={'name' + index}>{value}</span>
                     {(collaborators.length !== (index + 1)) &&
                       <span key={'dash' + index}> - </span>

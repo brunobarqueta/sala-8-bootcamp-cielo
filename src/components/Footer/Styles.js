@@ -16,6 +16,10 @@ const FooterStyles = styled.footer `
     gap: 1rem;
   }
 
+  .footer-wrapper {
+    width: 100%;
+  }
+
   @media (max-width: 834px) {
    
     .footer-container {
