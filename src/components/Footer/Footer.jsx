@@ -21,7 +21,6 @@ const Footer = () => {
                 );
               })}
             </footer>
-            <span>teste</span>
           </FooterStyles>
         </>
     );
