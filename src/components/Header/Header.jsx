@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HeaderStyles from './Styles';
 
 import SearchIcon from '@mui/icons-material/Search';
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -15,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     //Função
-    console.log('teste');
+    // console.log('teste');
   }, [refreshTrigger]);
 
     return ( 
@@ -23,6 +24,7 @@ const Header = () => {
           <HeaderStyles>
             <ul className='header-container'>
               <li className='item-wrapper'>
+                <div className='search-wrapper'>
                   <input
                     onChange={(e) => {
                       e.preventDefault();
@@ -31,16 +33,26 @@ const Header = () => {
                     placeholder='Procurar...'
                   />
                   <div 
-                    className='icon-wrapper'
+                    className='icon-wrapper search-icon'
                   >
                     <SearchIcon
-                      className='icon-settings search-icon'
+                      className='icon-settings'
                     />
                   </div>
+                </div>
               </li>
               <li className='item-wrapper'>
                 <div 
                   className='icon-wrapper'
+                  onClick={() => {toggleRefreshTrigger(!refreshTrigger)}}
+                >
+                  <DensityMediumIcon
+                    className='icon-settings mobile'
+                  />
+                </div>
+                <div 
+                  className='icon-wrapper'
+                  onClick={() => {toggleRefreshTrigger(!refreshTrigger)}}
                 >
                   <RefreshIcon
                     className='icon-settings'
