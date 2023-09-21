@@ -43,11 +43,11 @@ const Header = () => {
               </li>
               <li className='item-wrapper'>
                 <div 
-                  className='icon-wrapper'
+                  className='icon-wrapper mobile'
                   onClick={() => {toggleRefreshTrigger(!refreshTrigger)}}
                 >
                   <DensityMediumIcon
-                    className='icon-settings mobile'
+                    className='icon-settings'
                   />
                 </div>
                 <div 

@@ -95,6 +95,7 @@ const HeaderStyles = styled.header `
     }
 
     .item-wrapper {
+      min-width: 0rem;
       justify-content: space-between;
     }
 
@@ -109,7 +110,7 @@ const HeaderStyles = styled.header `
     }
 
     .mobile {
-      display: block;
+      display: flex;
     }
 
   }
