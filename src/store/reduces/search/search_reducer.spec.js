@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import * as Actions from "../../actions/pagination";
+import * as Actions from "../../actions/search";
 import { productFake } from "../../mocks/product_fake";
-import { paginationReducer } from ".";
+import searchReducer from ".";
 
 describe("Reduces", () => {
   const initialState = {
@@ -10,12 +10,15 @@ describe("Reduces", () => {
     error: "",
   };
   it("Should return initial state as default", () => {
-    const result = paginationReducer(initialState, { type: "" });
+    const result = searchReducer(initialState, { type: "" });
     expect(result).toEqual(initialState);
   });
   it("Should return state with load true", () => {
-    const page = faker.number.int()
-    const result = paginationReducer(initialState, Actions.paginationRequired(page));
+    const search = faker.lorem.word(3)
+    const result = searchReducer(
+      initialState,
+      Actions.searchRequired(search)
+    );
     expect(result).toEqual({
       load: true,
       list: [],
@@ -24,7 +27,7 @@ describe("Reduces", () => {
   });
   it("Should return state with error", () => {
     const error = faker.lorem.sentence(5);
-    const result = paginationReducer(initialState, Actions.paginationFailure(error));
+    const result = searchReducer(initialState, Actions.searchFailure(error));
     expect(result).toEqual({
       load: false,
       list: [],
@@ -32,9 +35,9 @@ describe("Reduces", () => {
     });
   });
   it("Should return state with product list", () => {
-    const result = paginationReducer(
+    const result = searchReducer(
       initialState,
-      Actions.paginationSuccess([productFake])
+      Actions.searchSuccess([productFake])
     );
     expect(result).toEqual({
       load: false,

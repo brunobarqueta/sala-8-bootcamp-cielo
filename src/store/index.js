@@ -1,12 +1,10 @@
 import createSagaMiddleware from "@redux-saga/core";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from 'redux'
 import { takeLatest } from "redux-saga/effects";
-import { LIST_REQUIRED } from "./types/list";
-import { PAGINATION_REQUIRED } from "./types/pagination";
-import { listReducer } from "./reduces/list";
-import { paginationReducer } from "./reduces/pagination";
-import { listProducts } from "./saga/list";
-import { paginationProducts } from "./saga/pagination";
+import { SEARCH_REQUIRED } from "./types/search";
+import { searchReducer } from "./reduces/search";
+import { searchProducts } from "./saga/search";
 
 export const initialState = {
   load: false,
@@ -14,14 +12,10 @@ export const initialState = {
   error: "",
 };
 function* rootSaga() {
-  yield [
-    takeLatest(LIST_REQUIRED, listProducts),
-    takeLatest(PAGINATION_REQUIRED, paginationProducts),
-  ];
+  yield takeLatest(SEARCH_REQUIRED, searchProducts);
 }
 const rootReducers = combineReducers({
-  default: listReducer,
-  pagination: paginationReducer,
+  products: searchReducer || (() => null),
 });
 
 const sagaMiddleware = createSagaMiddleware();
