@@ -14,11 +14,14 @@ const FooterStyles = styled.footer `
     align-items: center;
     box-sizing: border-box;
     gap: 1rem;
+    text-align: center;
   }
 
-  .footer-wrapper {
-    width: 100%;
+  .footer-container a{
+    color: black;
+    text-decoration: none;
   }
+
 
   @media (max-width: 834px) {
    

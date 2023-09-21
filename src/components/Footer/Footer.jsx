@@ -3,7 +3,24 @@ import FooterStyles from './Styles';
 
 const Footer = () => {
 
-  const collaborators = ['Bruno Barqueta', 'Cledson Leite', 'Rafael Magalhães', 'Suzane Ferreira'];
+  const collaborators = [
+    {
+      name: 'Bruno Barqueta',
+      link: ''
+    },
+    {
+      name: 'Cledson Leite',
+      link: ''
+    },
+    {
+      name: 'Rafael Magalhães',
+      link: 'https://www.linkedin.com/in/rafaelvilaveras/'
+    },
+    {
+      name: 'Suzane Ferreira',
+      link: ''
+    }
+  ];
     return ( 
         <>
           <FooterStyles>
@@ -11,8 +28,8 @@ const Footer = () => {
               {collaborators.map((value, index) => {
                 
                 return(
-                  <React.Fragment className='footer-wrapper' key={'frag' + index}>
-                    <span key={'name' + index}>{value}</span>
+                  <React.Fragment key={'frag' + index}>
+                    <a href={value.link} key={'name' + index}>{value.name}</a>
                     {(collaborators.length !== (index + 1)) &&
                       <span key={'dash' + index}> - </span>
                     }
