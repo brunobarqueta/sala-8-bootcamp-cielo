@@ -2,7 +2,7 @@ import { call, put } from "redux-saga/effects";
 import * as Actions from "../../actions/search";
 import axios from "axios";
 
-console.log(import.meta.env.VITE_BASE_URL);
+// console.log(import.meta.env.VITE_BASE_URL);
 
 export const control = async (payload) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;

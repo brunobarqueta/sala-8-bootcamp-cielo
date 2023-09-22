@@ -13,6 +13,7 @@ module.exports = {
   plugins: ['react-refresh', 'jest'],
   rules: {
     'no-undef': 'off',
+    "react/prop-types": "off",
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import HeaderStyles from './Styles';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -13,13 +13,13 @@ const Header = () => {
 
   const [theme, setTheme] = useState(localStorage.getItem('theme') === null ? 'light' : localStorage.getItem('theme'));
   const [refreshTrigger, toggleRefreshTrigger] = useState(false);
+  const [searchTrigger, toggleSearchTrigger] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const searchRef = useRef(null);
   const testNum = 0;
-
-  console.log(theme);
 
   useEffect(() => {
     //Função
-    // console.log('teste');
   }, [refreshTrigger]);
 
   function toggleTheme() {
@@ -37,11 +37,19 @@ const Header = () => {
           <HeaderStyles>
             <ul className='header-container'>
               <li className='item-wrapper'>
+                { searchTrigger && 
+                  <div className='list-bg-shadow' 
+                    onClick={() => {toggleSearchTrigger(false)}}
+                  />}
                 <div className='search-wrapper'>
                   <input
+                    ref={searchRef}
                     onChange={(e) => {
                       e.preventDefault();
+                      setSearchValue(e.target.value);
                     }}
+                    value={searchValue}
+                    onClick={() => {toggleSearchTrigger(true)}}
                     type='text'
                     placeholder='Procurar...'
                   />
@@ -52,7 +60,12 @@ const Header = () => {
                       className='icon-settings'
                     />
                   </div>
-                  <SearchList/>
+                  {searchTrigger && 
+                    <SearchList
+                      searchValue={searchValue}
+                      setSearchValue={setSearchValue}
+                    />
+                  }
                 </div>
               </li>
               <li className='item-wrapper'>

@@ -16,9 +16,10 @@ const App = () => {
 	// console.log('load: ' + load);
 	// console.log('error: ' + error);
 	// console.log('list: ' + list);
-	useEffect(() => {
-		dispatch(searchRequired('sho', 2));
-	}, [])
+	// useEffect(() => {
+	// 	dispatch(searchRequired('sho', 2));
+	// }, [])
+	
 	const theme = 'light';
 	return (
 		<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>

@@ -8,7 +8,7 @@ export const searchReducer = (state = initialState, action) => {
     case Types.SEARCH_FAILURE:
       return { ...state, error: action.payload };
     case Types.SEARCH_SUCCESS:
-      console.log(action.payload)
+      // console.log(action.payload)
       return { ...state, list: action.payload };
     default:
       return { ...state };
