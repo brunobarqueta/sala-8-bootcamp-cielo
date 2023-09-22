@@ -42,6 +42,11 @@ export default createGlobalStyle`
     height: 100%;
   }
 
+  .app-main {
+    display: flex;
+    gap: 1rem;
+  }
+
   .sidebar-temp {
     width: 14rem;
   }
