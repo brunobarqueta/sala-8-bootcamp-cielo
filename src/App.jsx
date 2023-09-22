@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-
-import { searchRequired } from "./store/actions/search";
-
-import "./App.css";
+import { searchRequired } from './store/actions/search';
+import { ThemeProvider } from 'styled-components'
+import GlobalStyle from './styles/global';
+import { lightTheme, darkTheme } from './styles/themes';
 
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -17,7 +17,7 @@ export const useProductProvider = () => {
 };
 
 const App = () => {
-	const { load, error, list } = useSelector((state) => state.products);
+	const {load, error, list} = useSelector(state => state.products);
 	const dispatch = useDispatch();
 
 	const [textFieldValue, setTextFieldValue] = useState(0);
@@ -37,18 +37,14 @@ const App = () => {
 	}, []);
 
 	return (
-		<ProductContext.Provider value={{ textFieldValue, updateTextFieldValue }}>
 		<div className="app-container main-font">
 			<Header/>
-      <div className="product-content">
-				<div>
-					<SideBar />
-				</div>
-				<Grid />
-      </div>
+      <div className="flex">
+          <SideBar />
+          <Grid />
+        </div>
 			<Footer/>
 		</div>
-		</ProductContext.Provider>
 	);
 };
 
