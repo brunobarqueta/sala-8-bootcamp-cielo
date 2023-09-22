@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import HeaderStyles from './Styles';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,17 +8,33 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { searchRequired } from '../../store/actions/search';
+
 
 const Header = () => {
 
-  const [darkMode, toggleDarkMode] = useState(false);
-  const [refreshTrigger, toggleRefreshTrigger] = useState(false);
-  const testNum = 0;
+  const [theme, setTheme] = useState(localStorage.getItem('theme') === null ? 'light' : localStorage.getItem('theme'));
+  const searchRef = useRef(null);
+	const dispatch = useDispatch();
+  
+  const [cartValues, setCartValues] = useState(totalItems());
+  
+  function totalItems() {
+    const items = JSON.parse(localStorage.getItem("myCart"));
 
-  useEffect(() => {
-    //Função
-    // console.log('teste');
-  }, [refreshTrigger]);
+    return items !== null ? items.length : 0;
+    
+  }
+  
+  function toggleTheme() {
+    if(theme === 'light'){
+      localStorage.setItem('theme', 'dark');
+      setTheme("dark");
+    } else {
+      localStorage.setItem('theme', 'light');
+      setTheme('light');
+    }
+  }
 
     return ( 
         <>
@@ -26,14 +43,13 @@ const Header = () => {
               <li className='item-wrapper'>
                 <div className='search-wrapper'>
                   <input
-                    onChange={(e) => {
-                      e.preventDefault();
-                    }}
-                    type='text'
-                    placeholder='Procurar...'
+                    ref={searchRef}
                   />
                   <div 
                     className='icon-wrapper search-icon'
+                    onClick={() => {
+                      dispatch(searchRequired(searchRef.current.value, ''));
+                    }}
                   >
                     <SearchIcon
                       className='icon-settings'
@@ -44,7 +60,6 @@ const Header = () => {
               <li className='item-wrapper'>
                 <div 
                   className='icon-wrapper mobile'
-                  onClick={() => {toggleRefreshTrigger(!refreshTrigger)}}
                 >
                   <DensityMediumIcon
                     className='icon-settings'
@@ -52,16 +67,16 @@ const Header = () => {
                 </div>
                 <div 
                   className='icon-wrapper'
-                  onClick={() => {toggleRefreshTrigger(!refreshTrigger)}}
+                  onClick={() => {dispatch(searchRequired(''))}}
                 >
                   <RefreshIcon
                     className='icon-settings'
                   />
                 </div>
-                  {darkMode ? 
+                  {theme === 'light' ? 
                   <div 
                     className='icon-wrapper' 
-                    onClick={() => {toggleDarkMode(!darkMode)}}
+                    onClick={() => {toggleTheme()}}
                   >
                     <DarkModeIcon
                       className='icon-settings'
@@ -72,7 +87,8 @@ const Header = () => {
                   
                   <div 
                     className='icon-wrapper'
-                    onClick={() => {toggleDarkMode(!darkMode)}}
+                    onClick={() => {toggleTheme()}
+                    }
                   >
                     <Brightness7Icon
                       className='icon-settings'
@@ -85,7 +101,7 @@ const Header = () => {
                     <ShoppingCartIcon
                       className='icon-settings'
                     />
-                      {testNum > 0 && <span>{testNum < 10 ? '0' + testNum : testNum}</span>}
+                      {cartValues > 0 && <span>{cartValues < 10 ? '0' + cartValues : cartValues}</span>}
                   </div>
               </li>
             </ul>
