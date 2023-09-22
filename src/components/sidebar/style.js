@@ -12,7 +12,7 @@ const SideBarStyles = styled.div`
 const FieldsStyles = styled.div`
   display: "block";
   margin-top: 40px;
-  margin-left: 16px;
+  margin-left: 32px;
 `;
 
 export { SideBarStyles, FieldsStyles };
