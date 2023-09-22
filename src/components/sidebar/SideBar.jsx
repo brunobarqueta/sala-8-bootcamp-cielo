@@ -136,7 +136,7 @@ const SideBar = () => {
 			if ((startPrice && (itemPrice <= 0 || itemPrice < parseFloat(startPrice))) ||
 				(endPrice && itemPrice > parseFloat(endPrice))) {
 				return false;
-			  }
+			}
 
 			return true;
 		});
@@ -161,7 +161,6 @@ const SideBar = () => {
 					name="simple-controlled"
 					value={ratingValue}
 					onChange={(event, newValue) => {
-						console.log(newValue);
 						const formatNewValue = newValue === null ? 0 : newValue;
 						setRatingValue(formatNewValue);
 					}}
