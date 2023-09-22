@@ -6,7 +6,7 @@ const FooterStyles = styled.footer `
 
   .footer-container {
     width: 100%;
-    height: 6rem;
+    height: 4rem;
     background-color: #C4C4C4;
     display: flex;
     flex-direction: row;

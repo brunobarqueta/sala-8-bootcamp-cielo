@@ -6,7 +6,7 @@ const HeaderStyles = styled.header `
 
   .header-container {
     width: 100%;
-    height: 6rem;
+    height: 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
