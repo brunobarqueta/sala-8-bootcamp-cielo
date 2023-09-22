@@ -5,14 +5,12 @@ const SideBarStyles = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 15vw;
-  height: 100vh;
-  border: 1px solid;
+  height: 100%;
 `;
 
 const FieldsStyles = styled.div`
   display: "block";
   margin-top: 40px;
-  margin-left: 32px;
 `;
 
 export { SideBarStyles, FieldsStyles };

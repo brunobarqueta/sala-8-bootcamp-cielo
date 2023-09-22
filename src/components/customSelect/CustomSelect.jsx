@@ -2,34 +2,33 @@ import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInpu
 
 const names = ["Tools", "Sports", "Automotive", "Toys", "Kids", "Outdoors"];
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 60;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
 	PaperProps: {
 		style: {
 			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
+			width: 200,
 		},
 	},
 };
 
-const CustomSelect = ({personName, setPersonName}) => {
+const CustomSelect = ({categoryName, setCategoryName}) => {
 
     const handleSelectChange = (event) => {
 		const value = event.target.value;
-		setPersonName(
+		setCategoryName(
 			typeof value === "string" ? value.split(",") : value
 		);
 	};
 
 	return (
-		<FormControl sx={{ m: 1, width: 300 }}>
-			<InputLabel id="demo-multiple-checkbox-label"></InputLabel>
+		<FormControl sx={{ width: 250 }}>
 			<Select
 				labelId="demo-multiple-checkbox-label"
 				id="demo-multiple-checkbox"
 				multiple
-				value={personName}
+				value={categoryName}
 				onChange={handleSelectChange}
 				input={<OutlinedInput label="Tag" />}
 				renderValue={(selected) => selected.join(", ")}
@@ -37,7 +36,7 @@ const CustomSelect = ({personName, setPersonName}) => {
 			>
 				{names.map((name) => (
 					<MenuItem key={name} value={name}>
-						<Checkbox checked={personName.indexOf(name) > -1} />
+						<Checkbox checked={categoryName.indexOf(name) > -1} />
 						<ListItemText primary={name} />
 					</MenuItem>
 				))}

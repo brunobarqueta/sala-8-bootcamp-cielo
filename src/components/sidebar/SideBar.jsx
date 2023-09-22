@@ -98,7 +98,7 @@ const data = [
 ];
 
 const SideBar = () => {
-	const [personName, setPersonName] = useState([]);
+	const [categoryName, setCategoryName] = useState([]);
 	const [startPrice, setStartPrice] = useState("");
 	const [endPrice, setEndPrice] = useState("");
 	const [ratingValue, setRatingValue] = useState(0);
@@ -124,7 +124,7 @@ const SideBar = () => {
 
 	const handleFilterChange = () => {
 		let filteredItems = data.filter((item) => {
-			if (personName.length > 0 && !personName.includes(item.category)) {
+			if (categoryName.length > 0 && !categoryName.includes(item.category)) {
 				return false;
 			}
 
@@ -146,17 +146,17 @@ const SideBar = () => {
 
 	useEffect(() => {
 		handleFilterChange();
-	}, [personName, ratingValue, startPrice, endPrice]);
+	}, [categoryName, ratingValue, startPrice, endPrice]);
 
 	
 	return (
 		<SideBarStyles>
 			<FieldsStyles>
-				<Typography component="legend">Categoria</Typography>
-				<CustomSelect personName={personName} setPersonName={setPersonName}/>
+				<div>Categoria</div>
+				<CustomSelect categoryName={categoryName} setCategoryName={setCategoryName}/>
 			</FieldsStyles>
 			<FieldsStyles>
-				<Typography component="legend">Avaliações</Typography>
+				<div>Avaliações</div>
 				<Rating
 					name="simple-controlled"
 					value={ratingValue}
@@ -168,16 +168,16 @@ const SideBar = () => {
 				/>
 			</FieldsStyles>
 			<FieldsStyles>
-				<Typography component="legend">Preço</Typography>
+				<div>Preço</div>
 				<InputNumber label={'De'} handleFunction={handleStartPriceChange} price={startPrice}/>
 				<InputNumber label={'Até'} handleFunction={handleEndPriceChange} price={endPrice} />
 			</FieldsStyles>
 
-			{filteredData.map((item) => (
+			{/* {filteredData.map((item) => (
 				<div key={item.id}>
 					{item.name} - {item.price} - {item.rating} - {item.category}
 				</div>
-			))}
+			))} */}
 		</SideBarStyles>
 	);
 };
