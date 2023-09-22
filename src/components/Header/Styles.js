@@ -12,8 +12,8 @@ const HeaderStyles = styled.header `
     justify-content: space-between;
     box-sizing: border-box;
     padding: 0 1rem;
-    box-shadow: 0 1px 5px black;
-    -webkit-clip-path: inset(-5px 0px -5px 0px);
+    box-shadow: 0 1px 5px -3px ${(props) => {return props.theme.text}};
+    // -webkit-clip-path: inset(-50px 0px -50px 0px);
     position: sticky;
 
   }
@@ -29,17 +29,18 @@ const HeaderStyles = styled.header `
   .item-wrapper input {
     width: 19rem;
     height: 2rem;
-    border: 1px solid #C4C4C4;
     border-radius: 0.625rem;
     padding: 0.5rem 2rem 0.5rem 0.5rem;
     box-sizing: border-box;
     outline: none;
+    background-color: ${(props) => {return props.theme.input}};
   }
 
   .search-wrapper {
     width: 100%;
     display: flex;
     position: relative;
+    z-index: 99999;
   }
 
   .icon-wrapper {

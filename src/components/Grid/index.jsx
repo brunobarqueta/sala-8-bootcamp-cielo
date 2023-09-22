@@ -6,6 +6,7 @@ import { searchRequired } from '../../store/actions/search';
 import * as Styled from './styles'
 import GridItem from './components/GridItem';
 import Pagination from './components/Pagination';
+import CardModal from '../cardModal/cardModal';
 
 const Grid = () => {
     const [page, setPage] = useState(1)
@@ -50,10 +51,9 @@ const Grid = () => {
               ))}
             </Styled.Grid>
             <Pagination page={page <= 0 ? 1 : page} setPage={setPage} />
-            {open && <p>{idx}</p>}
           </>
-        )
-        }
+        )}
+        <CardModal open={open} setOpen={setOpen} index={idx}/>
       </Styled.Container>
     );
 }

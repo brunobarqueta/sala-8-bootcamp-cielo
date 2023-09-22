@@ -23,7 +23,7 @@ const CustomSelect = ({categoryName, setCategoryName}) => {
 	};
 
 	return (
-		<FormControl sx={{ width: 250 }}>
+		<FormControl sx={{ width: 180 }}>
 			<Select
 				labelId="demo-multiple-checkbox-label"
 				id="demo-multiple-checkbox"
