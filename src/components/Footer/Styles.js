@@ -7,7 +7,7 @@ const FooterStyles = styled.footer `
   .footer-container {
     width: 100%;
     height: 6rem;
-    background-color: #C4C4C4;
+    background-color: ${(props) => { return props.theme.background}};
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -18,7 +18,6 @@ const FooterStyles = styled.footer `
   }
 
   .footer-container a{
-    color: black;
     text-decoration: none;
   }
 

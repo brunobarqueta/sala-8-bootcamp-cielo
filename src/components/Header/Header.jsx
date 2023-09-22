@@ -7,17 +7,30 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SearchList from './searchList';
 
 const Header = () => {
 
-  const [darkMode, toggleDarkMode] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') === null ? 'light' : localStorage.getItem('theme'));
   const [refreshTrigger, toggleRefreshTrigger] = useState(false);
   const testNum = 0;
+
+  console.log(theme);
 
   useEffect(() => {
     //Função
     // console.log('teste');
   }, [refreshTrigger]);
+
+  function toggleTheme() {
+    if(theme === 'light'){
+      localStorage.setItem('theme', 'dark');
+      setTheme("dark");
+    } else {
+      localStorage.setItem('theme', 'light');
+      setTheme('light');
+    }
+  }
 
     return ( 
         <>
@@ -39,6 +52,7 @@ const Header = () => {
                       className='icon-settings'
                     />
                   </div>
+                  <SearchList/>
                 </div>
               </li>
               <li className='item-wrapper'>
@@ -58,10 +72,10 @@ const Header = () => {
                     className='icon-settings'
                   />
                 </div>
-                  {darkMode ? 
+                  {theme === 'light' ? 
                   <div 
                     className='icon-wrapper' 
-                    onClick={() => {toggleDarkMode(!darkMode)}}
+                    onClick={() => {toggleTheme()}}
                   >
                     <DarkModeIcon
                       className='icon-settings'
@@ -72,7 +86,8 @@ const Header = () => {
                   
                   <div 
                     className='icon-wrapper'
-                    onClick={() => {toggleDarkMode(!darkMode)}}
+                    onClick={() => {toggleTheme()}
+                    }
                   >
                     <Brightness7Icon
                       className='icon-settings'
