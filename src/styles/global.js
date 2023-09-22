@@ -42,4 +42,11 @@ export default createGlobalStyle`
     height: 100%;
   }
 
+  .sidebar-temp {
+    width: 14rem;
+  }
+  .flex {
+    display: flex;
+  }
+
 `;
