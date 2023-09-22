@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { searchRequired } from './store/actions/search';
@@ -8,7 +7,8 @@ import { lightTheme, darkTheme } from './styles/themes';
 
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import Products from "./pages/Products/Products";
+import Grid from './components/Grid';
+import SideBar from "./components/sidebar/SideBar";
 
 const App = () => {
 	const {load, error, list} = useSelector(state => state.products);
@@ -26,7 +26,10 @@ const App = () => {
 			<GlobalStyle/>
 				<div className="app-container main-font">
 					<Header/>
-					<Products/>
+					<div className="flex">
+						<SideBar />
+						<Grid />
+					</div>
 					<Footer/>
 				</div>
 		</ThemeProvider>
