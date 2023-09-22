@@ -29,14 +29,15 @@ const Grid = () => {
             {error}
           </Alert>
         </Collapse>
-        {load && (
+        {load 
+        ? (
           <Styled.Grid>
             {Array.from([1,2,3,4,5,6,7,8,9]).map((product, index) => (
               <Skeleton key={index} variant="rounded" width={223} height={216} />
             ))}
           </Styled.Grid>
-        )}
-        {list && (
+           )
+          : (
           <>
             <Styled.Grid>
               {list.map((product, index) => (
@@ -46,7 +47,8 @@ const Grid = () => {
             <Pagination page={page <= 0 ? 1 : page} setPage={setPage} />
             {open && <p>{idx}</p>}
           </>
-        )}
+        )
+        }
       </Styled.Container>
     );
 }
