@@ -7,3 +7,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.app-main {
+  display: flex;
+  gap: 1rem;
+}
+
+.sidebar-temp {
+  width: 14rem;
+}

@@ -5,21 +5,21 @@ const Footer = () => {
 
   const collaborators = [
     {
-      name: 'Bruno Barqueta',
-      link: ''
+      name: "Bruno Barqueta",
+      link: "",
     },
     {
-      name: 'Cledson Leite',
-      link: ''
+      name: "Cledson Leite",
+      link: "https://www.linkedin.com/in/cledson-leite/",
     },
     {
-      name: 'Rafael Magalhães',
-      link: 'https://www.linkedin.com/in/rafaelvilaveras/'
+      name: "Rafael Magalhães",
+      link: "https://www.linkedin.com/in/rafaelvilaveras/",
     },
     {
-      name: 'Suzane Ferreira',
-      link: ''
-    }
+      name: "Suzane Ferreira",
+      link: "",
+    },
   ];
     return ( 
         <>
