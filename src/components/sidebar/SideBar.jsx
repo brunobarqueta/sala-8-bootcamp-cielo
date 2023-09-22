@@ -1,27 +1,9 @@
-import * as React from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import { FieldsStyles, SideBarStyles } from "./style";
-import { NumericFormat } from "react-number-format";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Input from "@mui/material/Input";
-import ListItemText from "@mui/material/ListItemText";
-import Select from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
-import { InputAdornment, Rating, TextField, Typography } from "@mui/material";
+import { Rating, Typography } from "@mui/material";
+import InputNumber from "../inputNumber/InputNumber";
+import CustomSelect from "../customSelect/CustomSelect";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-	PaperProps: {
-		style: {
-			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
-		},
-	},
-};
 const data = [
 	{
 		id: "be001829-32ae-401b-bdfe-798e508410bc",
@@ -115,22 +97,14 @@ const data = [
 	},
 ];
 
-const names = ["Tools", "Sports", "Automotive", "Toys", "Kids", "Outdoors"];
-
 const SideBar = () => {
-	const [personName, setPersonName] = React.useState([]);
-	const [startPrice, setStartPrice] = React.useState("");
-	const [endPrice, setEndPrice] = React.useState("");
-	const [ratingValue, setRatingValue] = React.useState(0);
-	const [filteredData, setFilteredData] = React.useState(data);
+	const [personName, setPersonName] = useState([]);
+	const [startPrice, setStartPrice] = useState("");
+	const [endPrice, setEndPrice] = useState("");
+	const [ratingValue, setRatingValue] = useState(0);
+	const [filteredData, setFilteredData] = useState(data);
 
-	const handleSelectChange = (event) => {
-		const value = event.target.value;
-		setPersonName(
-			// On autofill we get a stringified value.
-			typeof value === "string" ? value.split(",") : value
-		);
-	};
+	
 
 	const handleStartPriceChange = (event) => {
 		let inputValue = event.target.value;
@@ -170,63 +144,17 @@ const SideBar = () => {
 		setFilteredData(filteredItems);
 	};
 
-	React.useEffect(() => {
+	useEffect(() => {
 		handleFilterChange();
 	}, [personName, ratingValue, startPrice, endPrice]);
 
-	const NumericFormatAdapter = React.forwardRef(function NumericFormatAdapter(props, ref) {
-		const { onChange, ...other } = props;
-
-		return (
-			<NumericFormat
-				{...other}
-				getInputRef={ref}
-				onValueChange={(values) => {
-					onChange({
-						target: {
-							name: props.name,
-							value: values.value,
-						},
-					});
-				}}
-				thousandSeparator
-				valueIsNumericString
-				prefix="$"
-			/>
-		);
-	});
-
-	NumericFormatAdapter.propTypes = {
-		name: PropTypes.string.isRequired,
-		onChange: PropTypes.func.isRequired,
-	};
-
+	
 	return (
 		<SideBarStyles>
 			<FieldsStyles>
 				<Typography component="legend">Categoria</Typography>
-				<FormControl sx={{ m: 1, width: 300 }}>
-					<InputLabel id="demo-multiple-checkbox-label"></InputLabel>
-					<Select
-						labelId="demo-multiple-checkbox-label"
-						id="demo-multiple-checkbox"
-						multiple
-						value={personName}
-						onChange={handleSelectChange}
-						input={<OutlinedInput label="Tag" />}
-						renderValue={(selected) => selected.join(", ")}
-						MenuProps={MenuProps}
-					>
-						{names.map((name) => (
-							<MenuItem key={name} value={name}>
-								<Checkbox checked={personName.indexOf(name) > -1} />
-								<ListItemText primary={name} />
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
+				<CustomSelect personName={personName} setPersonName={setPersonName}/>
 			</FieldsStyles>
-
 			<FieldsStyles>
 				<Typography component="legend">Avaliações</Typography>
 				<Rating
@@ -239,35 +167,10 @@ const SideBar = () => {
 					}}
 				/>
 			</FieldsStyles>
-
 			<FieldsStyles>
 				<Typography component="legend">Preço</Typography>
-				<FormControl sx={{ display: "block", marginTop: "12px" }}>
-					<InputLabel htmlFor="outlined-adornment-amount">De</InputLabel>
-					<Input
-						value={startPrice}
-						onChange={(event) => handleStartPriceChange(event)}
-						slotProps={{
-							input: {
-								component: NumericFormatAdapter,
-							},
-						}}
-						startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-					/>
-				</FormControl>
-				<FormControl sx={{ display: "block", marginTop: "12px" }}>
-					<InputLabel htmlFor="outlined-adornment-amount">Até</InputLabel>
-					<Input
-						value={endPrice}
-						onChange={(event) => handleEndPriceChange(event)}
-						slotProps={{
-							input: {
-								component: NumericFormatAdapter,
-							},
-						}}
-						startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-					/>
-				</FormControl>
+				<InputNumber label={'De'} handleFunction={handleStartPriceChange} price={startPrice}/>
+				<InputNumber label={'Até'} handleFunction={handleEndPriceChange} price={endPrice} />
 			</FieldsStyles>
 
 			{filteredData.map((item) => (
