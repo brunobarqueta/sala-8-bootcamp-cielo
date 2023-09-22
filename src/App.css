@@ -10,12 +10,19 @@
 
 .app-main {
   display: flex;
-  gap: 1rem;
 }
 
 .sidebar-temp {
   width: 14rem;
-  
+}
+
 .flex {
   display: flex;
+}
+
+.product-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 }

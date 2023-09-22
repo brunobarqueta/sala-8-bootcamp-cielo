@@ -17,9 +17,9 @@ const Footer = () => {
       link: "https://www.linkedin.com/in/rafaelvilaveras/",
     },
     {
-      name: "Suzane Ferreira",
-      link: "",
-    },
+      name: 'Suzane Ferreira',
+      link: 'https://www.linkedin.com/in/suzaneferreirapinto/'
+    }
   ];
     return ( 
         <>
