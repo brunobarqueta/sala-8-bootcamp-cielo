@@ -50,6 +50,7 @@ export default createGlobalStyle`
   .sidebar-temp {
     width: 14rem;
   }
+  
   .flex {
     display: flex;
   }

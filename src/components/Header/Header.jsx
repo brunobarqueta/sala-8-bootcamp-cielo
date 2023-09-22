@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import HeaderStyles from './Styles';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,30 +8,23 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import SearchList from './searchList';
+import { searchRequired } from '../../store/actions/search';
+
 
 const Header = () => {
 
   const [theme, setTheme] = useState(localStorage.getItem('theme') === null ? 'light' : localStorage.getItem('theme'));
-  const [refreshTrigger, toggleRefreshTrigger] = useState(false);
-  const [searchTrigger, toggleSearchTrigger] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
   const searchRef = useRef(null);
+	const dispatch = useDispatch();
   
   const [cartValues, setCartValues] = useState(totalItems());
   
   function totalItems() {
     const items = JSON.parse(localStorage.getItem("myCart"));
 
-    console.log(items?.length);
-
     return items !== null ? items.length : 0;
     
   }
-
-  useEffect(() => {
-    //Função
-  }, [refreshTrigger]);
   
   function toggleTheme() {
     if(theme === 'light'){
@@ -47,41 +41,25 @@ const Header = () => {
           <HeaderStyles>
             <ul className='header-container'>
               <li className='item-wrapper'>
-                { searchTrigger && 
-                  <div className='list-bg-shadow' 
-                    onClick={() => {toggleSearchTrigger(false)}}
-                  />}
                 <div className='search-wrapper'>
                   <input
                     ref={searchRef}
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setSearchValue(e.target.value);
-                    }}
-                    value={searchValue}
-                    onClick={() => {toggleSearchTrigger(true)}}
-                    type='text'
-                    placeholder='Procurar...'
                   />
                   <div 
                     className='icon-wrapper search-icon'
+                    onClick={() => {
+                      dispatch(searchRequired(searchRef.current.value, ''));
+                    }}
                   >
                     <SearchIcon
                       className='icon-settings'
                     />
                   </div>
-                  {searchTrigger && 
-                    <SearchList
-                      searchValue={searchValue}
-                      setSearchValue={setSearchValue}
-                    />
-                  }
                 </div>
               </li>
               <li className='item-wrapper'>
                 <div 
                   className='icon-wrapper mobile'
-                  onClick={() => {toggleRefreshTrigger(!refreshTrigger)}}
                 >
                   <DensityMediumIcon
                     className='icon-settings'
@@ -89,7 +67,7 @@ const Header = () => {
                 </div>
                 <div 
                   className='icon-wrapper'
-                  onClick={() => {toggleRefreshTrigger(!refreshTrigger)}}
+                  onClick={() => {dispatch(searchRequired(''))}}
                 >
                   <RefreshIcon
                     className='icon-settings'

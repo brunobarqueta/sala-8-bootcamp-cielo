@@ -40,7 +40,7 @@ const HeaderStyles = styled.header `
     width: 100%;
     display: flex;
     position: relative;
-    z-index: 99;
+    z-index: 99999;
   }
 
   .icon-wrapper {
@@ -84,51 +84,6 @@ const HeaderStyles = styled.header `
 
   .mobile {
     display: none;
-  }
-
-  .list-container {
-    width: 100%;
-    padding: 0.5rem 0rem;
-    background-color: ${(props) => {return props.theme.input}};
-    border: 1px solid  ${(props) => {return props.theme.border}};
-    position: absolute;
-    top: 2.15rem;
-    border-radius: 5px;
-    z-index: 99;
-  }
-
-  .list-container span {
-    width: 100%;
-    padding: 0.5rem;
-    
-  }
-
-  .items-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .items-wrapper span {
-    width: 100%;
-    padding: 0.5rem;
-    margin: 0.35rem 0;
-    padding: 0.25rem;
-    cursor: pointer;
-  }
-
-  .items-wrapper span:hover {
-    background-color: blue;
-  }
-
-  .list-bg-shadow {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    top: 0;
-    right: 0;
-    z-index: 99;
   }
 
   @media (max-width: 464px) {
