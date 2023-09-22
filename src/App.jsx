@@ -19,7 +19,7 @@ const App = () => {
 	// useEffect(() => {
 	// 	dispatch(searchRequired('sho', 2));
 	// }, [])
-	
+
 	const theme = 'light';
 	return (
 		<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>

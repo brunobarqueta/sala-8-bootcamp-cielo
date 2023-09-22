@@ -12,7 +12,7 @@ const HeaderStyles = styled.header `
     justify-content: space-between;
     box-sizing: border-box;
     padding: 0 1rem;
-    box-shadow: 0 1px 5px -3px black;
+    box-shadow: 0 1px 5px -3px ${(props) => {return props.theme.text}};
     // -webkit-clip-path: inset(-50px 0px -50px 0px);
     position: sticky;
 

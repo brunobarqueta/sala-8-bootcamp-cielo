@@ -16,12 +16,22 @@ const Header = () => {
   const [searchTrigger, toggleSearchTrigger] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const searchRef = useRef(null);
-  const testNum = 0;
+  
+  const [cartValues, setCartValues] = useState(totalItems());
+  
+  function totalItems() {
+    const items = JSON.parse(localStorage.getItem("myCart"));
+
+    console.log(items?.length);
+
+    return items !== null ? items.length : 0;
+    
+  }
 
   useEffect(() => {
     //Função
   }, [refreshTrigger]);
-
+  
   function toggleTheme() {
     if(theme === 'light'){
       localStorage.setItem('theme', 'dark');
@@ -113,7 +123,7 @@ const Header = () => {
                     <ShoppingCartIcon
                       className='icon-settings'
                     />
-                      {testNum > 0 && <span>{testNum < 10 ? '0' + testNum : testNum}</span>}
+                      {cartValues > 0 && <span>{cartValues < 10 ? '0' + cartValues : cartValues}</span>}
                   </div>
               </li>
             </ul>

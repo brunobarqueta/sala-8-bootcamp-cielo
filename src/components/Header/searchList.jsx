@@ -34,10 +34,10 @@ const SearchList = ({...props}) => {
           {props.searchValue === '' && <span>...</span>}
           {props.searchValue.length >=3 && list.length === 0 && !time && <span> Nenhum item correspondente...</span>}
           {props.searchValue.length >=3 && list && list.map((values, index) => {
-
+            
             return(
                 <div className='items-wrapper' key={'items-wrapper' + index}>
-                    <span onClick={() => {setSearchValue(values.name)}}>{values.name}</span>
+                    <span onClick={() => {localStorage.setItem("myCart", JSON.stringify([values]));}}>{values.name}</span>
                 </div>
             );
           })}
