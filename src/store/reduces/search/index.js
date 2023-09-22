@@ -2,13 +2,29 @@ import * as Types from '../../types/search'
 import { initialState } from "../..";
 
 export const searchReducer = (state = initialState, action) => {
+  state.search = "";
+  const search = action.payload?.search
+    ? action.payload.search.split("=")[1]
+    : "";
   switch (action.type) {
     case Types.SEARCH_REQUIRED:
-      return { ...state, load: true, error: '' };
+      return {
+        ...state,
+        load: true,
+        error: "",
+        search,
+      };
     case Types.SEARCH_FAILURE:
-      return { ...state, error: action.payload, load: false, list: [] };
+      return { ...state, error: action.payload, load: false, list: [], search: "" };
     case Types.SEARCH_SUCCESS:
-      return { ...state, list: action.payload, load: false, error: '' };
+      state.search = "";
+      return {
+        ...state,
+        list: action.payload,
+        load: false,
+        error: "",
+        search,
+      };
     default:
       return { ...state };
   }

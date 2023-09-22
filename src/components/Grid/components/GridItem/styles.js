@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
    position: relative;
+   width: 14rem;
+  height: 13.5rem;
 `
 export const Img = styled.img`
   object-fit: cover;
-  width: 14rem;
+  width: 100%;
   height: 13.5rem;
   border-radius: 1.5rem;
 `;
@@ -15,7 +17,7 @@ export const Title = styled.div`
   align-items: center;
   position: absolute;
   bottom: 0.3rem;
-  z-index: 10;
+  /* z-index: 10; */
   width: 100%;
   height: 2rem;
   background-color: #fff;

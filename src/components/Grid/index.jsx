@@ -9,7 +9,7 @@ import Pagination from './components/Pagination';
 
 const Grid = () => {
     const [page, setPage] = useState(1)
-    const { load, error, list } = useSelector((state) => state.products);
+    const { load, error, search, list } = useSelector((state) => state.products);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false)
     const [idx, setIdx] = useState(0)
@@ -20,7 +20,12 @@ const Grid = () => {
     }
     useEffect(() => {
         const pagination = page <= 0 ? 1 : page
-      dispatch(searchRequired("", pagination));
+        if(search) {
+          console.log(search)
+          dispatch(searchRequired(search, pagination));
+        }else{
+          dispatch(searchRequired("", pagination));
+        }
     }, [page]);
     return (
       <Styled.Container>

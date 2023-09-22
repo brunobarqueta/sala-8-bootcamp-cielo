@@ -11,7 +11,10 @@ export const Container = styled.div`
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 1rem;
   height: 43.6rem;
+
+  @media (max-width: 830px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;

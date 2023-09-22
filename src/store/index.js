@@ -10,6 +10,7 @@ export const initialState = {
   load: false,
   list: [],
   error: "",
+  search: ""
 };
 function* rootSaga() {
   yield takeLatest(SEARCH_REQUIRED, searchProducts);
