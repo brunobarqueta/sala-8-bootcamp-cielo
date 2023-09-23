@@ -16,15 +16,8 @@ const Header = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') === null ? 'light' : localStorage.getItem('theme'));
   const searchRef = useRef(null);
 	const dispatch = useDispatch();
-  
-  const [cartValues, setCartValues] = useState(totalItems());
-  
-  function totalItems() {
-    const items = JSON.parse(localStorage.getItem("myCart"));
 
-    return items !== null ? items.length : 0;
-    
-  }
+  const { textFieldValue } = useProductProvider();
   
   function toggleTheme() {
     if(theme === 'light'){
