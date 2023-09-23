@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { searchRequired } from './store/actions/search';
-import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './styles/global';
+import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './styles/themes';
 
 import Footer from "./components/Footer/Footer";
@@ -17,15 +15,34 @@ export const useProductProvider = () => {
 };
 
 const App = () => {
+	const theme = 'light';
+
+	const [textFieldValue, setTextFieldValue] = useState(0);
+
+	const updateTextFieldValue = (newValue) => {
+		const currentValue = parseFloat(textFieldValue);
+		const numericValue = parseFloat(newValue);
+	
+		if (!isNaN(numericValue)) {
+			const result = currentValue + numericValue;
+			setTextFieldValue(result);
+		}
+	};
+	
 	return (
-		<div className="app-container main-font">
-			<Header/>
-      <div className="flex">
-          <SideBar />
-          <Grid />
-        </div>
-			<Footer/>
-		</div>
+		<ProductContext.Provider value={{ textFieldValue, updateTextFieldValue }}>
+			<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+				<GlobalStyle/>
+					<div className="app-container main-font">
+						<Header/>
+						<div className="flex">
+							<SideBar />
+							<Grid />
+						</div>
+						<Footer/>
+					</div>
+			</ThemeProvider>
+		</ProductContext.Provider>
 	);
 };
 
