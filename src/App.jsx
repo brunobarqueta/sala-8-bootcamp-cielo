@@ -15,9 +15,10 @@ export const useProductProvider = () => {
 };
 
 const App = () => {
-	const theme = 'light';
+	// const theme = 'light';
 
 	const [textFieldValue, setTextFieldValue] = useState(0);
+	const [theme, setTheme] = useState('light');
 
 	const updateTextFieldValue = (newValue) => {
 		const currentValue = parseFloat(textFieldValue);
@@ -28,9 +29,9 @@ const App = () => {
 			setTextFieldValue(result);
 		}
 	};
-	
+
 	return (
-		<ProductContext.Provider value={{ textFieldValue, updateTextFieldValue }}>
+		<ProductContext.Provider value={{ textFieldValue, theme, updateTextFieldValue, setTheme }}>
 			<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
 				<GlobalStyle/>
 					<div className="app-container main-font">

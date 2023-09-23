@@ -13,13 +13,12 @@ import { searchRequired } from '../../store/actions/search';
 
 const Header = () => {
 
-  const [theme, setTheme] = useState(localStorage.getItem('theme') === null ? 'light' : localStorage.getItem('theme'));
   const searchRef = useRef(null);
 	const dispatch = useDispatch();
 
   const [darkMode, toggleDarkMode] = useState(false);
   const [refreshTrigger, toggleRefreshTrigger] = useState(false);
-  const { textFieldValue } = useProductProvider();
+  const { textFieldValue, theme, setTheme } = useProductProvider();
   
   const [cartValues, setCartValues] = useState(totalItems());
   
@@ -48,6 +47,10 @@ const Header = () => {
                 <div className='search-wrapper'>
                   <input
                     ref={searchRef}
+                    placeholder='Procurar...'
+                    onKeyDown={(e) => {
+                      e.key === 'Enter' && dispatch(searchRequired(e.target.value, ''));
+                    }}
                   />
                   <div 
                     className='icon-wrapper search-icon'
@@ -80,7 +83,7 @@ const Header = () => {
                   {theme === 'light' ? 
                   <div 
                     className='icon-wrapper' 
-                    onClick={() => {toggleTheme()}}
+                    onClick={() => {setTheme('dark')}}
                   >
                     <DarkModeIcon
                       className='icon-settings'
@@ -91,7 +94,7 @@ const Header = () => {
                   
                   <div 
                     className='icon-wrapper'
-                    onClick={() => {toggleTheme()}
+                    onClick={() => {setTheme('light')}
                     }
                   >
                     <Brightness7Icon
